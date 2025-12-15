@@ -1,0 +1,19 @@
+const schema = process.env.REACT_APP_BACKEND_SCHEMA;
+const host = process.env.REACT_APP_BACKEND_HOST;
+const port = process.env.REACT_APP_BACKEND_PORT;
+
+export const baseURL = `${schema}://${host}:${port}/`;
+export const PAGE404_ROUTE = "/404";
+export const MAINPAGE_ROUTE = "/";
+export const COURSES_ROUTE = "/courses";
+export const COURSE_ROUTE = "/course";
+export const REQUEST_ROUTE = "/apply";
+export const ADMIN_ROUTE = "/admin";
+export const CourseADMIN_ROUTE = "/admin/courses";
+export const ServiceADMIN_ROUTE = "/admin/services";
+export const LOGIN_ROUTE = "/login";
+export const CONTACT_ROUTE = "/contacts";
+export const LICENSES_ROUTE = "/licenses";
+export const SERVICES_ROUTE = "/services";
+export const SERVICE_ROUTE = "/service";
+export const RequestADMIN_ROUTE = "/admin/requests";
