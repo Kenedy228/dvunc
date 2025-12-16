@@ -1,5 +1,7 @@
 FROM node:22-alpine AS build
 
+RUN apk update
+
 WORKDIR /app
 
 COPY package*.json ./
@@ -14,8 +16,10 @@ COPY --from=build /app /app
 
 WORKDIR /app
 
-RUN chown -R node:node /app
-USER node
+VOLUME [ "/app/static" ]
+
+# RUN chown -R node:node /app
+# USER node
 
 EXPOSE 8000
 

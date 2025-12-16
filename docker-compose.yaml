@@ -3,10 +3,6 @@ services:
     image: dvunc-frontend:latest
     ports:
       - "3000:80"
-    environment:
-      - REACT_APP_BACKEND_SCHEMA=http
-      - REACT_APP_BACKEND_HOST=backend
-      - REACT_APP_BACKEND_PORT=8000
     depends_on:
       - backend
 
@@ -22,9 +18,12 @@ services:
       - DB_PORT=5432
       - SECRET_KEY=${SECRET_KEY}
       - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - pdf-docs:/app/static
     depends_on:
       db:
         condition: service_healthy
+    
 
   db:
     image: postgres:latest
@@ -32,6 +31,7 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./db/pg_dump.sql:/docker-entrypoint-initdb.d/pg_dump.sql
+      - postgres-data:/var/lib/postgresql
     ports:
       - "5432:5432"
     healthcheck:
@@ -40,3 +40,7 @@ services:
       timeout: 5s
       retries: 5
       start_period: 10s
+
+volumes:
+  postgres-data:
+  pdf-docs:
