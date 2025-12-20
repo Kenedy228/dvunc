@@ -1,16 +1,17 @@
 services:
   frontend:
-    image: dvunc-frontend:latest
+    image: dvunc/frontend:latest
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - backend
 
   backend:
-    image: dvunc-backend:latest
+    image: dvunc/backend:latest
     ports:
       - "8000:8000"
     environment:
